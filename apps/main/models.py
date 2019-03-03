@@ -23,7 +23,7 @@ class Course(models.Model):
 
 class Description(models.Model):
   content = models.TextField()
-  course = models.OneToOneField(Course, primary_key=True)
+  course = models.OneToOneField(Course, primary_key=True, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
   objects = CourseManager()
