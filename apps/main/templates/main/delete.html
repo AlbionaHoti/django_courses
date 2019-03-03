@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bulma!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          Are you sure you want to delete the following course?
+        </h1>
+        <p class="subtitle">
+          Name: <strong>{{ course.name }}</strong>!
+        </p>
+        <p class="subtitle">
+          Description: <strong>{{ course.description.content }}</strong>!
+        </p>
+
+      </div>
+      <a href="{% url 'courses:index' %}" class="button is-light">NO</a>
+      <td><a href="{% url 'courses:delete' course.id %}" type="submit" class="button is-danger">Yes! I want to delete this.</a>
+    </section>
+  </div>
+</body>
+
+</html>

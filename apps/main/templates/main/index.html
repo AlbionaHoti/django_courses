@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Courses</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Add a new Course
+      </h1>
+      <form action="/create/" method="POST">
+        {% csrf_token %}
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" name="name" type="text" placeholder="e.g Api's Design">
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Message</label>
+          <div class="control">
+            <textarea class="textarea" name="description" placeholder="Course is ...." rows="2 "></textarea>
+          </div>
+        </div>
+        <input class="button is-primary is-focused" type="submit" value="Add" />
+      </form>
+      </br>
+      </br>
+      </br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th><abbr title="Position">Course Name</abbr></th>
+            <th>Description</th>
+            <th><abbr title="Played">Date Added</abbr></th>
+            <th><abbr title="Won">Actions</abbr></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th><abbr title="Position">Course Name</abbr></th>
+            <th>Description</th>
+            <th><abbr title="Played">Date Added</abbr></th>
+            <th><abbr title="Won">Actions</abbr></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          {% for course in courses %}
+          <tr>
+            <th>{{ course.name }}</th>
+            <td>{{ course.description.content }}</td>
+            <td>{{ course.created_at }}</td>
+            <td><a href="{% url 'courses:destroy' course.id %}" type="submit" class="button is-text">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>
